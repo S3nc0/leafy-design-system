@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Leafy design system for the web: CSS tokens and styles, IBM Plex, and React components with Zen interface sounds.",
   "private": true,
+  "license": "Apache-2.0",
   "type": "module",
   "main": "./js/leafy.js",
   "module": "./js/leafy.js",
@@ -25,8 +26,7 @@
   "files": [
     "css",
     "fonts",
-    "js",
-    "LICENSES.md"
+    "js"
   ],
   "peerDependencies": {
     "react": ">=18"

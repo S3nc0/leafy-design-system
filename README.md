@@ -39,6 +39,8 @@ leafy-native/
 ├── android/leafy/             Android library module (Jetpack Compose + Material 3)
 ├── ios/LeafyDesign/           Swift package (SwiftUI, iOS 16+, macOS 13+)
 └── docs/                      reference renders of the SwiftUI components
+LICENSE                        Apache License 2.0, for Leafy itself
+LICENSES.md                    which licence covers what, including the fonts, sounds and icons
 ```
 
 ## Web
@@ -305,13 +307,16 @@ To update the native fonts:
 node tools/woff-to-sfnt.cjs <out dir> node_modules/@ibm/plex-sans/fonts/complete/woff/IBMPlexSans-*.woff
 ```
 
-## Licences
+## Licence
+
+Leafy is licensed under the [Apache License 2.0](LICENSE). The fonts, sounds and icons it includes keep their own licences:
 
 | What | Licence |
 | --- | --- |
-| Zen sounds (uisfx) | CC0 1.0 |
-| uisfx sound runtime, inside the web package's JavaScript | MIT |
+| Leafy's own tokens, docs, CSS, JavaScript, Kotlin and Swift | Apache 2.0 |
 | IBM Plex fonts | SIL Open Font License 1.1 |
+| uisfx sound runtime, inside the web package's JavaScript | MIT |
+| Zen sounds (uisfx) | CC0 1.0 |
 | Material Symbols (web icons, from Google Fonts) and Android icon shapes (from Material icons) | Apache 2.0 |
 
-Leafy builds on Material 3 and borrows patterns from IBM's Carbon Design System. It isn't affiliated with Google or IBM. Details are in [`leafy-web/LICENSES.md`](leafy-web/LICENSES.md) and [`leafy-native/LICENSES.md`](leafy-native/LICENSES.md).
+Leafy builds on Material 3 and borrows patterns from IBM's Carbon Design System. It isn't affiliated with Google or IBM. [LICENSES.md](LICENSES.md) says where each third-party file is and what its licence asks of you.
