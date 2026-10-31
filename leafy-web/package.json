@@ -26,7 +26,8 @@
   "files": [
     "css",
     "fonts",
-    "js"
+    "js",
+    "LICENSES.md"
   ],
   "peerDependencies": {
     "react": ">=18"

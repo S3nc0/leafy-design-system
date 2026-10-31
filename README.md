@@ -18,6 +18,23 @@ Every platform shares these, generated from the same tokens:
   <img alt="Leafy components in SwiftUI: buttons, tags, notifications, tiles, switches and type" src="leafy-native/docs/swiftui-light.png" width="640">
 </picture>
 
+## Releases
+
+Each [release](https://github.com/S3nc0/leafy-design-system/releases) has one download per platform, so you don't need the whole repository:
+
+| File | What it is |
+| --- | --- |
+| `leafy-web-<version>.tgz` | The web package, ready for `npm install` |
+| `leafy-android-<version>.zip` | The Compose library module, to unzip into your project as `leafy` |
+| `LeafyDesign-ios-<version>.zip` | The Swift package, to add in Xcode with Add Local… |
+
+Each download includes `LICENSE` and `LICENSES.md`.
+
+To make a new release, follow these steps:
+1. Raise `version` in `leafy-web/package.json` and commit.
+2. Run `node tools/release.mjs`, which builds the three files into `dist/`.
+3. Attach the files to a GitHub release tagged `v<version>`.
+
 ## What's in this repository
 
 ```
@@ -28,6 +45,7 @@ design-system/                 the Leafy design system, exported from claude.ai 
 └── components/                the React components (bundle.js, bundle.css, index.d.ts) and one doc per component
 tools/
 ├── generate.mjs               builds leafy-web and the native token files from design-system/
+├── release.mjs                builds the per-platform release downloads into dist/
 └── woff-to-sfnt.cjs           turns IBM's WOFF fonts into the TTFs the native apps bundle
 leafy-web/                     the web package
 ├── css/                       leafy.css (everything), or fonts.css, icons.css, tokens.css and components.css
@@ -49,11 +67,13 @@ The web package is the design system itself: all 41 components, styled with the 
 
 **1. Add it.** Pick the route that fits your site:
 
-- **With a bundler (Vite, Next.js, webpack).** Copy `leafy-web` into your project and install it from that folder. It isn't published to npm.
+- **With a bundler (Vite, Next.js, webpack).** Install the package file from a release. Leafy isn't on the npm registry.
 
   ```bash
-  npm install ./leafy-web
+  npm install https://github.com/S3nc0/leafy-design-system/releases/download/v0.1.0/leafy-web-0.1.0.tgz
   ```
+
+  To work from a copy of the folder instead, run `npm install ./leafy-web`.
 
   ```js
   import 'leafy-web/leafy.css';
@@ -118,7 +138,7 @@ Each native platform gets:
 
 ### Android: Jetpack Compose
 
-**1. Add the module.** Copy [`leafy-native/android/leafy`](leafy-native/android/leafy) into your project as a module named `leafy`, then:
+**1. Add the module.** Download `leafy-android-<version>.zip` from the [latest release](https://github.com/S3nc0/leafy-design-system/releases/latest) and unzip it into your project as a module folder named `leafy`. You can also copy [`leafy-native/android/leafy`](leafy-native/android/leafy) from this repository. Then:
 
 ```kotlin
 // settings.gradle.kts
@@ -165,9 +185,9 @@ You can use the families directly as `LeafyPlex.Sans` and `LeafyPlex.Mono`. If a
 ### iOS: SwiftUI
 
 **1. Add the package.**
-1. Clone this repository.
+1. Download `LeafyDesign-ios-<version>.zip` from the [latest release](https://github.com/S3nc0/leafy-design-system/releases/latest) and unzip it. You can also clone this repository and use [`leafy-native/ios/LeafyDesign`](leafy-native/ios/LeafyDesign).
 2. In Xcode, choose File › Add Package Dependencies › Add Local…
-3. Pick [`leafy-native/ios/LeafyDesign`](leafy-native/ios/LeafyDesign).
+3. Pick the `LeafyDesign` folder.
 
 Xcode can only add a package by URL when its `Package.swift` sits at the top of the repository. This one lives in a subfolder, so use the local route for now.
 
