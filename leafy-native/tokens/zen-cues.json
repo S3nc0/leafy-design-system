@@ -1,0 +1,696 @@
+{
+  "source": "uisfx 0.4.0, Zen pack (sounds CC0 1.0)",
+  "categories": [
+    {
+      "id": "input",
+      "label": "Input",
+      "description": "Pointer, key, and touch contact."
+    },
+    {
+      "id": "selection",
+      "label": "Selection",
+      "description": "Choosing, switching, and changing state."
+    },
+    {
+      "id": "navigation",
+      "label": "Navigation",
+      "description": "Moving through views and layers."
+    },
+    {
+      "id": "editing",
+      "label": "Editing",
+      "description": "Changing work with reversible and destructive actions."
+    },
+    {
+      "id": "movement",
+      "label": "Movement",
+      "description": "Dragging, snapping, and spatial gestures."
+    },
+    {
+      "id": "communication",
+      "label": "Communication",
+      "description": "Messages and attention."
+    },
+    {
+      "id": "feedback",
+      "label": "Feedback",
+      "description": "Clear outcomes and system status."
+    },
+    {
+      "id": "progress",
+      "label": "Progress",
+      "description": "Processes from start to finish."
+    },
+    {
+      "id": "loops",
+      "label": "Loops",
+      "description": "Continuous state while work, capture, or connection is active."
+    },
+    {
+      "id": "media",
+      "label": "Media",
+      "description": "Playback, seeking, and listening controls."
+    },
+    {
+      "id": "system",
+      "label": "System",
+      "description": "Connections, access, and device state."
+    },
+    {
+      "id": "reward",
+      "label": "Reward",
+      "description": "Milestones, value, and celebration."
+    },
+    {
+      "id": "commerce",
+      "label": "Commerce",
+      "description": "Cart, checkout, and value exchange."
+    }
+  ],
+  "cues": [
+    {
+      "name": "hover",
+      "label": "Hover",
+      "category": "input",
+      "description": "Fine-pointer discovery without commitment.",
+      "loop": false,
+      "duration": 0.122
+    },
+    {
+      "name": "press",
+      "label": "Press",
+      "category": "input",
+      "description": "A control is physically engaged.",
+      "loop": false,
+      "duration": 0.155
+    },
+    {
+      "name": "release",
+      "label": "Release",
+      "category": "input",
+      "description": "A pressed control springs back.",
+      "loop": false,
+      "duration": 0.172
+    },
+    {
+      "name": "double-click",
+      "label": "Double click",
+      "category": "input",
+      "description": "A rapid secondary activation.",
+      "loop": false,
+      "duration": 0.221
+    },
+    {
+      "name": "focus",
+      "label": "Focus",
+      "category": "input",
+      "description": "A control becomes ready for keyboard or text input.",
+      "loop": false,
+      "duration": 0.207
+    },
+    {
+      "name": "long-press",
+      "label": "Long press",
+      "category": "input",
+      "description": "A sustained press reveals a secondary action.",
+      "loop": false,
+      "duration": 0.401
+    },
+    {
+      "name": "select",
+      "label": "Select",
+      "category": "selection",
+      "description": "An item enters the active set.",
+      "loop": false,
+      "duration": 0.254
+    },
+    {
+      "name": "deselect",
+      "label": "Deselect",
+      "category": "selection",
+      "description": "An item leaves the active set.",
+      "loop": false,
+      "duration": 0.229
+    },
+    {
+      "name": "toggle-on",
+      "label": "Toggle on",
+      "category": "selection",
+      "description": "A binary setting becomes active.",
+      "loop": false,
+      "duration": 0.268
+    },
+    {
+      "name": "toggle-off",
+      "label": "Toggle off",
+      "category": "selection",
+      "description": "A binary setting becomes inactive.",
+      "loop": false,
+      "duration": 0.262
+    },
+    {
+      "name": "check",
+      "label": "Check",
+      "category": "selection",
+      "description": "A checkbox or task enters its completed state.",
+      "loop": false,
+      "duration": 0.262
+    },
+    {
+      "name": "uncheck",
+      "label": "Uncheck",
+      "category": "selection",
+      "description": "A checkbox or task returns to its incomplete state.",
+      "loop": false,
+      "duration": 0.245
+    },
+    {
+      "name": "delete",
+      "label": "Delete",
+      "category": "editing",
+      "description": "A destructive removal is committed.",
+      "loop": false,
+      "duration": 0.396
+    },
+    {
+      "name": "cancel",
+      "label": "Cancel",
+      "category": "editing",
+      "description": "A pending action is abandoned without applying.",
+      "loop": false,
+      "duration": 0.303
+    },
+    {
+      "name": "undo",
+      "label": "Undo",
+      "category": "editing",
+      "description": "The most recent change is reversed.",
+      "loop": false,
+      "duration": 0.385
+    },
+    {
+      "name": "redo",
+      "label": "Redo",
+      "category": "editing",
+      "description": "A reversed change is applied again.",
+      "loop": false,
+      "duration": 0.385
+    },
+    {
+      "name": "copy",
+      "label": "Copy",
+      "category": "editing",
+      "description": "Selected content is placed on the clipboard.",
+      "loop": false,
+      "duration": 0.27
+    },
+    {
+      "name": "paste",
+      "label": "Paste",
+      "category": "editing",
+      "description": "Clipboard content is inserted into the current context.",
+      "loop": false,
+      "duration": 0.319
+    },
+    {
+      "name": "open",
+      "label": "Open",
+      "category": "navigation",
+      "description": "A menu, sheet, panel, or detail view appears.",
+      "loop": false,
+      "duration": 0.327
+    },
+    {
+      "name": "close",
+      "label": "Close",
+      "category": "navigation",
+      "description": "A menu, sheet, panel, or detail view recedes.",
+      "loop": false,
+      "duration": 0.303
+    },
+    {
+      "name": "back",
+      "label": "Back",
+      "category": "navigation",
+      "description": "Navigation returns to the previous place.",
+      "loop": false,
+      "duration": 0.269
+    },
+    {
+      "name": "forward",
+      "label": "Forward",
+      "category": "navigation",
+      "description": "Navigation advances to the next place.",
+      "loop": false,
+      "duration": 0.278
+    },
+    {
+      "name": "expand",
+      "label": "Expand",
+      "category": "navigation",
+      "description": "A collapsed region reveals more detail.",
+      "loop": false,
+      "duration": 0.327
+    },
+    {
+      "name": "collapse",
+      "label": "Collapse",
+      "category": "navigation",
+      "description": "An expanded region returns to its compact state.",
+      "loop": false,
+      "duration": 0.311
+    },
+    {
+      "name": "drag-start",
+      "label": "Drag start",
+      "category": "movement",
+      "description": "An object lifts from its resting place.",
+      "loop": false,
+      "duration": 0.254
+    },
+    {
+      "name": "drop",
+      "label": "Drop",
+      "category": "movement",
+      "description": "A dragged object lands in a valid target.",
+      "loop": false,
+      "duration": 0.27
+    },
+    {
+      "name": "snap",
+      "label": "Snap",
+      "category": "movement",
+      "description": "An object locks into a precise position.",
+      "loop": false,
+      "duration": 0.155
+    },
+    {
+      "name": "swipe",
+      "label": "Swipe",
+      "category": "movement",
+      "description": "A touch gesture moves content spatially.",
+      "loop": false,
+      "duration": 0.319
+    },
+    {
+      "name": "reorder",
+      "label": "Reorder",
+      "category": "movement",
+      "description": "An item settles into a new position in a sequence.",
+      "loop": false,
+      "duration": 0.303
+    },
+    {
+      "name": "invalid-drop",
+      "label": "Invalid drop",
+      "category": "movement",
+      "description": "A dragged object cannot land in the current target.",
+      "loop": false,
+      "duration": 0.352
+    },
+    {
+      "name": "send",
+      "label": "Send",
+      "category": "communication",
+      "description": "A message or object leaves the user.",
+      "loop": false,
+      "duration": 0.368
+    },
+    {
+      "name": "receive",
+      "label": "Receive",
+      "category": "communication",
+      "description": "A response or object arrives.",
+      "loop": false,
+      "duration": 0.409
+    },
+    {
+      "name": "notification",
+      "label": "Notification",
+      "category": "communication",
+      "description": "New information is available, without urgency.",
+      "loop": false,
+      "duration": 0.458
+    },
+    {
+      "name": "mention",
+      "label": "Mention",
+      "category": "communication",
+      "description": "The user is directly addressed.",
+      "loop": false,
+      "duration": 0.52
+    },
+    {
+      "name": "typing",
+      "label": "Typing",
+      "category": "communication",
+      "description": "A brief key contact during text entry.",
+      "loop": false,
+      "duration": 0.085
+    },
+    {
+      "name": "reaction",
+      "label": "Reaction",
+      "category": "communication",
+      "description": "A lightweight social response is added.",
+      "loop": false,
+      "duration": 0.352
+    },
+    {
+      "name": "success",
+      "label": "Success",
+      "category": "feedback",
+      "description": "An action finished with the expected result.",
+      "loop": false,
+      "duration": 0.571
+    },
+    {
+      "name": "error",
+      "label": "Error",
+      "category": "feedback",
+      "description": "An action failed and needs attention.",
+      "loop": false,
+      "duration": 0.481
+    },
+    {
+      "name": "warning",
+      "label": "Warning",
+      "category": "feedback",
+      "description": "A risky or consequential state needs review.",
+      "loop": false,
+      "duration": 0.52
+    },
+    {
+      "name": "info",
+      "label": "Info",
+      "category": "feedback",
+      "description": "A neutral system fact is surfaced.",
+      "loop": false,
+      "duration": 0.39
+    },
+    {
+      "name": "blocked",
+      "label": "Blocked",
+      "category": "feedback",
+      "description": "An action cannot continue in the current state.",
+      "loop": false,
+      "duration": 0.359
+    },
+    {
+      "name": "retry",
+      "label": "Retry",
+      "category": "feedback",
+      "description": "A failed action is attempted again.",
+      "loop": false,
+      "duration": 0.368
+    },
+    {
+      "name": "start",
+      "label": "Start",
+      "category": "progress",
+      "description": "A process, recording, or session begins.",
+      "loop": false,
+      "duration": 0.401
+    },
+    {
+      "name": "stop",
+      "label": "Stop",
+      "category": "progress",
+      "description": "A process, recording, or session ends.",
+      "loop": false,
+      "duration": 0.352
+    },
+    {
+      "name": "progress-step",
+      "label": "Progress step",
+      "category": "progress",
+      "description": "A discrete step advances inside a longer process.",
+      "loop": false,
+      "duration": 0.213
+    },
+    {
+      "name": "complete",
+      "label": "Complete",
+      "category": "progress",
+      "description": "A multi-step process reaches its final state.",
+      "loop": false,
+      "duration": 0.637
+    },
+    {
+      "name": "queued",
+      "label": "Queued",
+      "category": "progress",
+      "description": "Work is accepted and waiting to begin.",
+      "loop": false,
+      "duration": 0.319
+    },
+    {
+      "name": "checkpoint",
+      "label": "Checkpoint",
+      "category": "progress",
+      "description": "A meaningful stage in a longer process is saved.",
+      "loop": false,
+      "duration": 0.434
+    },
+    {
+      "name": "loading",
+      "label": "Loading",
+      "category": "loops",
+      "description": "A quiet repeating pulse while an interface fetches or waits.",
+      "loop": true,
+      "duration": 1.2
+    },
+    {
+      "name": "processing",
+      "label": "Processing",
+      "category": "loops",
+      "description": "A restrained repeating bed while sustained work is running.",
+      "loop": true,
+      "duration": 1.6
+    },
+    {
+      "name": "recording",
+      "label": "Recording",
+      "category": "loops",
+      "description": "A calm periodic pulse while audio or video capture is live.",
+      "loop": true,
+      "duration": 1
+    },
+    {
+      "name": "connecting",
+      "label": "Connecting",
+      "category": "loops",
+      "description": "A repeating search pattern while a device or live session connects.",
+      "loop": true,
+      "duration": 1.5
+    },
+    {
+      "name": "scanning",
+      "label": "Scanning",
+      "category": "loops",
+      "description": "A spatial sweep repeats while content or devices are discovered.",
+      "loop": true,
+      "duration": 1.4
+    },
+    {
+      "name": "streaming",
+      "label": "Streaming",
+      "category": "loops",
+      "description": "A quiet repeating flow while live data or media continues.",
+      "loop": true,
+      "duration": 1.2
+    },
+    {
+      "name": "play",
+      "label": "Play",
+      "category": "media",
+      "description": "Media playback begins or resumes.",
+      "loop": false,
+      "duration": 0.303
+    },
+    {
+      "name": "pause",
+      "label": "Pause",
+      "category": "media",
+      "description": "Media playback pauses at the current position.",
+      "loop": false,
+      "duration": 0.286
+    },
+    {
+      "name": "seek",
+      "label": "Seek",
+      "category": "media",
+      "description": "The playback position moves to a new point.",
+      "loop": false,
+      "duration": 0.27
+    },
+    {
+      "name": "volume-change",
+      "label": "Volume change",
+      "category": "media",
+      "description": "Playback loudness moves to a new level.",
+      "loop": false,
+      "duration": 0.221
+    },
+    {
+      "name": "skip-next",
+      "label": "Skip next",
+      "category": "media",
+      "description": "Playback advances to the next item.",
+      "loop": false,
+      "duration": 0.262
+    },
+    {
+      "name": "skip-previous",
+      "label": "Skip previous",
+      "category": "media",
+      "description": "Playback returns to the previous item.",
+      "loop": false,
+      "duration": 0.262
+    },
+    {
+      "name": "connect",
+      "label": "Connect",
+      "category": "system",
+      "description": "A device, service, or live session becomes available.",
+      "loop": false,
+      "duration": 0.525
+    },
+    {
+      "name": "disconnect",
+      "label": "Disconnect",
+      "category": "system",
+      "description": "A device, service, or live session goes offline.",
+      "loop": false,
+      "duration": 0.498
+    },
+    {
+      "name": "lock",
+      "label": "Lock",
+      "category": "system",
+      "description": "Access closes or a protected state engages.",
+      "loop": false,
+      "duration": 0.303
+    },
+    {
+      "name": "unlock",
+      "label": "Unlock",
+      "category": "system",
+      "description": "Access opens or a protected state disengages.",
+      "loop": false,
+      "duration": 0.393
+    },
+    {
+      "name": "wake",
+      "label": "Wake",
+      "category": "system",
+      "description": "A device or dormant interface becomes active.",
+      "loop": false,
+      "duration": 0.401
+    },
+    {
+      "name": "sleep",
+      "label": "Sleep",
+      "category": "system",
+      "description": "A device or interface enters a dormant state.",
+      "loop": false,
+      "duration": 0.413
+    },
+    {
+      "name": "reward",
+      "label": "Reward",
+      "category": "reward",
+      "description": "The user receives a small unit of value.",
+      "loop": false,
+      "duration": 0.5
+    },
+    {
+      "name": "level-up",
+      "label": "Level up",
+      "category": "reward",
+      "description": "Capability, rank, or progression increases.",
+      "loop": false,
+      "duration": 0.704
+    },
+    {
+      "name": "achievement",
+      "label": "Achievement",
+      "category": "reward",
+      "description": "A rare milestone deserves a fuller celebration.",
+      "loop": false,
+      "duration": 0.911
+    },
+    {
+      "name": "streak",
+      "label": "Streak",
+      "category": "reward",
+      "description": "Repeated participation extends an active streak.",
+      "loop": false,
+      "duration": 0.584
+    },
+    {
+      "name": "badge",
+      "label": "Badge",
+      "category": "reward",
+      "description": "A collectible distinction is awarded.",
+      "loop": false,
+      "duration": 0.582
+    },
+    {
+      "name": "bonus",
+      "label": "Bonus",
+      "category": "reward",
+      "description": "An unexpected extra reward is revealed.",
+      "loop": false,
+      "duration": 0.66
+    },
+    {
+      "name": "add-to-cart",
+      "label": "Add to cart",
+      "category": "commerce",
+      "description": "An item enters a cart or pending order.",
+      "loop": false,
+      "duration": 0.426
+    },
+    {
+      "name": "remove-from-cart",
+      "label": "Remove from cart",
+      "category": "commerce",
+      "description": "An item leaves a cart or pending order.",
+      "loop": false,
+      "duration": 0.393
+    },
+    {
+      "name": "checkout",
+      "label": "Checkout",
+      "category": "commerce",
+      "description": "A cart advances into the payment flow.",
+      "loop": false,
+      "duration": 0.538
+    },
+    {
+      "name": "purchase",
+      "label": "Purchase",
+      "category": "commerce",
+      "description": "A paid transaction or value exchange completes.",
+      "loop": false,
+      "duration": 0.534
+    },
+    {
+      "name": "coupon",
+      "label": "Coupon",
+      "category": "commerce",
+      "description": "A discount or promotional code is accepted.",
+      "loop": false,
+      "duration": 0.45
+    },
+    {
+      "name": "refund",
+      "label": "Refund",
+      "category": "commerce",
+      "description": "Value returns after a completed transaction.",
+      "loop": false,
+      "duration": 0.561
+    }
+  ]
+}
