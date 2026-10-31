@@ -69,11 +69,11 @@ It follows dark mode, and on Android 14+ it also follows the system contrast set
 
 You can use the families directly as `LeafyPlex.Sans` and `LeafyPlex.Mono`. If an app must use the device fonts instead, pass `LeafyTheme(fonts = LeafyFonts.System)`. Either way, list IBM Plex (SIL Open Font License, text in `android/leafy/IBM-Plex-OFL.txt`) in your app's open-source notices.
 
-**Status:** written for Compose and Material 3 1.3, but **not compiled yet**. This Mac has no Android SDK or Kotlin compiler. Build it once in Android Studio and open `LeafyGallery.kt`'s previews to check every component in three themes.
+**Status:** written for Compose and Material 3 1.3, but **not compiled yet**. Build it once in Android Studio and open `LeafyGallery.kt`'s previews to check every component in three themes.
 
 ## iOS: SwiftUI
 
-**1. Add the package.** In Xcode, choose File › Add Package Dependencies › Add Local…, then pick `ios/LeafyDesign`. You can also push that folder to its own Git repository and add it by URL.
+**1. Add the package.** In Xcode, choose File › Add Package Dependencies › Add Local…, then pick `ios/LeafyDesign`. Xcode can only add a package by URL when its `Package.swift` is at the top of a repository, so for that, give `ios/LeafyDesign` a repository of its own.
 
 **2. Apply `.leafyTheme()` once at the root.**
 
