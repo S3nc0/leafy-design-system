@@ -1,0 +1,6 @@
+/* Leafy for the web: everything in one stylesheet.
+   Link this file, or import the parts you need in this order. */
+@import "./fonts.css";
+@import "./icons.css";
+@import "./tokens.css";
+@import "./components.css";

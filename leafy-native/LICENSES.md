@@ -1,6 +1,6 @@
 # Licences
 
-- **Zen sounds** (`android/leafy/src/main/res/raw/zen_*.ogg`, `ios/LeafyDesign/Sources/LeafyDesign/Resources/Sounds/zen-*.mp3`, `tokens/zen-cues.json`):
+- **Zen sounds** (`android/leafy/src/main/res/raw/zen_*.ogg`, `ios/LeafyDesign/Sources/LeafyDesign/Resources/Sounds/zen-*.mp3`, `../design-system/zen-cues.json`):
   - From [uisfx](https://uisfx.com) 0.4.0 by Yuki Capital.
   - Dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
   - No attribution is required, but it is appreciated.

@@ -1,0 +1,34 @@
+{
+  "name": "leafy-web",
+  "version": "0.1.0",
+  "description": "Leafy design system for the web: CSS tokens and styles, IBM Plex, and React components with Zen interface sounds.",
+  "private": true,
+  "type": "module",
+  "main": "./js/leafy.js",
+  "module": "./js/leafy.js",
+  "types": "./js/leafy.d.ts",
+  "exports": {
+    ".": {
+      "types": "./js/leafy.d.ts",
+      "import": "./js/leafy.js"
+    },
+    "./global": "./js/leafy.global.js",
+    "./leafy.css": "./css/leafy.css",
+    "./css/*": "./css/*",
+    "./fonts/*": "./fonts/*",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "./css/*.css",
+    "./js/leafy.global.js"
+  ],
+  "files": [
+    "css",
+    "fonts",
+    "js",
+    "LICENSES.md"
+  ],
+  "peerDependencies": {
+    "react": ">=18"
+  }
+}

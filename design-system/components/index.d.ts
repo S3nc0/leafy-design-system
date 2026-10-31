@@ -1,0 +1,192 @@
+import type * as React from 'react';
+
+type IconLike = string | React.ReactNode;
+type Size3 = 'sm' | 'md' | 'lg';
+
+export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> { name: string; filled?: boolean; size?: number | string; label?: string }
+export declare function Icon(props: IconProps): React.ReactElement;
+
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> { variant?: 'filled' | 'inverse' | 'tonal' | 'outlined' | 'text' | 'elevated'; size?: Size3; icon?: IconLike; iconPosition?: 'start' | 'end'; tone?: 'default' | 'danger'; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Button(props: ButtonProps): React.ReactElement;
+
+export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> { icon: IconLike; variant?: 'standard' | 'filled' | 'tonal' | 'outlined'; size?: Size3; selected?: boolean; 'aria-label': string; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function IconButton(props: IconButtonProps): React.ReactElement;
+
+export interface FABProps extends React.ButtonHTMLAttributes<HTMLButtonElement> { icon: IconLike; label?: string; size?: 'small' | 'regular' | 'large'; color?: 'primary' | 'secondary' | 'tertiary' | 'surface'; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function FAB(props: FABProps): React.ReactElement;
+
+export interface SegmentedOption { value: string; label?: string; icon?: IconLike; disabled?: boolean }
+export interface SegmentedButtonProps { options: SegmentedOption[]; multiple?: boolean; value?: string | string[] | null; defaultValue?: string | string[] | null; onChange?: (value: any) => void; 'aria-label'?: string; className?: string; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function SegmentedButton(props: SegmentedButtonProps): React.ReactElement;
+
+export interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> { inline?: boolean; icon?: IconLike; size?: Size3; disabled?: boolean }
+export declare function Link(props: LinkProps): React.ReactElement;
+
+export interface ChipProps { label: string; variant?: 'assist' | 'filter' | 'input' | 'suggestion'; icon?: IconLike; elevated?: boolean; selected?: boolean; defaultSelected?: boolean; onSelectedChange?: (selected: boolean) => void; onRemove?: () => void; onClick?: (e: React.MouseEvent) => void; disabled?: boolean; className?: string; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Chip(props: ChipProps): React.ReactElement;
+
+export interface TagProps { children: React.ReactNode; type?: 'neutral' | 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'error' | 'info'; size?: 'sm' | 'md'; icon?: IconLike; onRemove?: () => void; className?: string; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Tag(props: TagProps): React.ReactElement;
+
+export interface BadgeProps { count?: number; max?: number; children?: React.ReactNode; 'aria-label'?: string; className?: string }
+export declare function Badge(props: BadgeProps): React.ReactElement;
+
+export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> { label?: React.ReactNode; indeterminate?: boolean; error?: boolean; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Checkbox(props: CheckboxProps): React.ReactElement;
+
+export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> { label?: React.ReactNode; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Radio(props: RadioProps): React.ReactElement;
+
+export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> { label?: React.ReactNode; labelFirst?: boolean; icons?: boolean; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Switch(props: SwitchProps): React.ReactElement;
+
+export interface SliderProps { min?: number; max?: number; step?: number; value?: number; defaultValue?: number; onChange?: (value: number) => void; label?: string; id?: string; showValue?: boolean; showRange?: boolean; disabled?: boolean; 'aria-label'?: string; className?: string }
+export declare function Slider(props: SliderProps): React.ReactElement;
+
+export interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> { variant?: 'stacked' | 'filled' | 'outlined'; size?: Size3; label: string; supportingText?: React.ReactNode; error?: boolean; leadingIcon?: IconLike; trailingIcon?: IconLike; background?: string; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function TextField(props: TextFieldProps): React.ReactElement;
+
+export interface SelectOption { value: string | number; label: string; disabled?: boolean }
+export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> { label?: string; options: (SelectOption | string | number)[]; size?: Size3; inline?: boolean; supportingText?: React.ReactNode; error?: boolean }
+export declare function Select(props: SelectProps): React.ReactElement;
+
+export interface SearchBarProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'value' | 'defaultValue'> { value?: string; defaultValue?: string; onValueChange?: (value: string) => void; size?: Size3; leading?: IconLike | null; trailing?: React.ReactNode; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function SearchBar(props: SearchBarProps): React.ReactElement;
+
+export interface CardProps extends React.HTMLAttributes<HTMLElement> { variant?: 'outlined' | 'filled' | 'elevated'; onClick?: (e: React.MouseEvent) => void }
+export declare function Card(props: CardProps): React.ReactElement;
+
+export interface TileProps extends React.HTMLAttributes<HTMLElement> { kind?: 'base' | 'clickable' | 'selectable'; href?: string; selected?: boolean; defaultSelected?: boolean; onSelectedChange?: (selected: boolean) => void; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Tile(props: TileProps): React.ReactElement;
+
+export interface DividerProps { inset?: boolean | 'middle'; className?: string }
+export declare function Divider(props: DividerProps): React.ReactElement;
+
+export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {}
+export declare function List(props: ListProps): React.ReactElement;
+export interface ListItemProps { headline: React.ReactNode; supportingText?: React.ReactNode; overline?: React.ReactNode; lines?: 2 | 3; leading?: IconLike; trailing?: IconLike; trailingIsText?: boolean; onClick?: (e: React.MouseEvent) => void; selected?: boolean }
+export declare function ListItem(props: ListItemProps): React.ReactElement;
+export interface AvatarProps { children?: React.ReactNode; label?: string; className?: string }
+export declare function Avatar(props: AvatarProps): React.ReactElement;
+
+export interface AccordionItem { title: React.ReactNode; content: React.ReactNode; disabled?: boolean }
+export interface AccordionProps { items: AccordionItem[]; open?: number[]; defaultOpen?: number[]; onOpenChange?: (open: number[]) => void; size?: Size3; align?: 'start' | 'end'; id?: string; className?: string; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Accordion(props: AccordionProps): React.ReactElement;
+
+export interface DataTableColumn<R = any> { key: string; header: React.ReactNode; align?: 'start' | 'end'; sortable?: boolean; width?: string; render?: (row: R) => React.ReactNode; sortValue?: (row: R) => string | number }
+export interface DataTableSort { key: string; dir: 'asc' | 'desc' | 'none' }
+export interface DataTableProps<R extends { id: string | number } = any> {
+  columns: DataTableColumn<R>[]; rows: R[]; title?: React.ReactNode; description?: React.ReactNode; toolbar?: React.ReactNode;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'; zebra?: boolean; sortable?: boolean; sort?: DataTableSort | null; defaultSort?: DataTableSort | null; onSortChange?: (sort: DataTableSort) => void;
+  selectable?: boolean; selectedIds?: (string | number)[]; defaultSelectedIds?: (string | number)[]; onSelectionChange?: (ids: (string | number)[]) => void; batchActions?: React.ReactNode;
+  className?: string; style?: React.CSSProperties; /** `false` silences this instance's Zen sounds. */ sound?: boolean;
+}
+export declare function DataTable(props: DataTableProps): React.ReactElement;
+
+export interface PaginationProps { totalItems: number; pageSizes?: number[]; page?: number; defaultPage?: number; pageSize?: number; defaultPageSize?: number; onChange?: (state: { page: number; pageSize: number }) => void; 'aria-label'?: string; className?: string; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Pagination(props: PaginationProps): React.ReactElement;
+
+export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> { open?: boolean; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Menu(props: MenuProps): React.ReactElement | null;
+export interface MenuItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> { label: React.ReactNode; icon?: IconLike; trailing?: React.ReactNode }
+export declare function MenuItem(props: MenuItemProps): React.ReactElement;
+
+export interface TabsProps { tabs: { label: string; icon?: IconLike }[]; variant?: 'primary' | 'secondary' | 'contained'; value?: number; defaultValue?: number; onChange?: (index: number) => void; 'aria-label'?: string; className?: string; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Tabs(props: TabsProps): React.ReactElement;
+
+export interface TopAppBarProps { title: React.ReactNode; variant?: 'small' | 'center' | 'medium' | 'large'; navigationIcon?: IconLike; navigationLabel?: string; onNavigate?: () => void; actions?: React.ReactNode; scrolled?: boolean; className?: string }
+export declare function TopAppBar(props: TopAppBarProps): React.ReactElement;
+
+export interface HeaderAction { icon: IconLike; label: string; onClick?: () => void; badge?: number | true; active?: boolean }
+export interface HeaderProps { name: React.ReactNode; prefix?: React.ReactNode; href?: string; navItems?: { label: string; href?: string; onClick?: (e: React.MouseEvent) => void; current?: boolean }[]; actions?: HeaderAction[]; onMenu?: () => void; menuOpen?: boolean; menuLabel?: string; inverse?: boolean; className?: string }
+export declare function Header(props: HeaderProps): React.ReactElement;
+
+export interface SideNavItem { key?: string; icon?: IconLike; label: string; href?: string; onClick?: (e: React.MouseEvent) => void; badge?: number | true; children?: Omit<SideNavItem, 'children' | 'icon'>[] }
+export interface SideNavProps { items: SideNavItem[]; value?: string | null; defaultValue?: string | null; onChange?: (key: string) => void; expanded?: string[]; defaultExpanded?: string[]; onExpandedChange?: (keys: string[]) => void; 'aria-label'?: string; className?: string; style?: React.CSSProperties; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function SideNav(props: SideNavProps): React.ReactElement;
+
+export interface BreadcrumbProps { items: { label: React.ReactNode; href?: string; onClick?: (e: React.MouseEvent) => void }[]; 'aria-label'?: string; className?: string }
+export declare function Breadcrumb(props: BreadcrumbProps): React.ReactElement;
+
+export interface NavItem { icon: IconLike; label: string; badge?: number | true }
+export interface NavigationBarProps { items: NavItem[]; value?: number; defaultValue?: number; onChange?: (index: number) => void; 'aria-label'?: string; className?: string; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function NavigationBar(props: NavigationBarProps): React.ReactElement;
+export interface NavigationRailProps extends NavigationBarProps { menu?: boolean; onMenu?: () => void; fab?: FABProps }
+export declare function NavigationRail(props: NavigationRailProps): React.ReactElement;
+
+export interface ProgressStep { label: React.ReactNode; secondary?: React.ReactNode; state?: 'complete' | 'current' | 'incomplete' | 'invalid' | 'disabled' }
+export interface ProgressIndicatorProps { steps: ProgressStep[]; current?: number; onChange?: (index: number) => void; vertical?: boolean; spaceEqually?: boolean; className?: string; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function ProgressIndicator(props: ProgressIndicatorProps): React.ReactElement;
+
+export interface DialogProps { open: boolean; headline: React.ReactNode; children?: React.ReactNode; actions?: React.ReactNode; icon?: IconLike; eyebrow?: React.ReactNode; closeButton?: boolean; actionsLayout?: 'end' | 'flush'; onClose?: () => void; alert?: boolean; inline?: boolean; id?: string; className?: string; style?: React.CSSProperties; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Dialog(props: DialogProps): React.ReactElement | null;
+
+export interface NotificationProps { kind?: 'info' | 'success' | 'warning' | 'error'; title?: React.ReactNode; children?: React.ReactNode; variant?: 'inline' | 'toast'; contrast?: 'low' | 'high'; caption?: React.ReactNode; action?: { label: string; onClick?: () => void }; onClose?: () => void; open?: boolean; role?: string; className?: string; style?: React.CSSProperties; /** Toasts sound by default (`false` silences); inline notifications only with `true`. */ sound?: boolean; }
+export declare function Notification(props: NotificationProps): React.ReactElement | null;
+
+export interface SnackbarProps { message: React.ReactNode; action?: string; onAction?: () => void; onClose?: () => void; open?: boolean; className?: string; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function Snackbar(props: SnackbarProps): React.ReactElement | null;
+
+export interface TooltipProps { text: string; children: React.ReactElement; open?: boolean; placement?: 'above' | 'below'; id?: string; className?: string }
+export declare function Tooltip(props: TooltipProps): React.ReactElement;
+
+export interface ProgressProps { type?: 'linear' | 'circular'; value?: number; label?: string; helperText?: React.ReactNode; size?: 'small' | 'big'; 'aria-label'?: string; className?: string; style?: React.CSSProperties; /** `true` turns on its opt-in Zen sound. */ sound?: boolean; }
+export declare function Progress(props: ProgressProps): React.ReactElement;
+
+export interface SkeletonProps { type?: 'text' | 'heading' | 'block' | 'circle'; lines?: number; width?: string | number; height?: string | number; className?: string; style?: React.CSSProperties }
+export declare function Skeleton(props: SkeletonProps): React.ReactElement;
+
+export interface CodeSnippetProps { children: string; type?: 'inline' | 'single' | 'multi'; copyLabel?: string; className?: string; style?: React.CSSProperties; /** `false` silences this instance's Zen sounds. */ sound?: boolean; }
+export declare function CodeSnippet(props: CodeSnippetProps): React.ReactElement;
+
+/** One of the 78 uisfx cues; Leafy plays them in the Zen pack. */
+export type SoundCueName = 'hover' | 'press' | 'release' | 'double-click' | 'focus' | 'long-press' | 'select' | 'deselect' | 'toggle-on' | 'toggle-off' | 'check' | 'uncheck' | 'delete' | 'cancel' | 'undo' | 'redo' | 'copy' | 'paste' | 'open' | 'close' | 'back' | 'forward' | 'expand' | 'collapse' | 'drag-start' | 'drop' | 'snap' | 'swipe' | 'reorder' | 'invalid-drop' | 'send' | 'receive' | 'notification' | 'mention' | 'typing' | 'reaction' | 'success' | 'error' | 'warning' | 'info' | 'blocked' | 'retry' | 'start' | 'stop' | 'progress-step' | 'complete' | 'queued' | 'checkpoint' | 'loading' | 'processing' | 'recording' | 'connecting' | 'scanning' | 'streaming' | 'play' | 'pause' | 'seek' | 'volume-change' | 'skip-next' | 'skip-previous' | 'connect' | 'disconnect' | 'lock' | 'unlock' | 'wake' | 'sleep' | 'reward' | 'level-up' | 'achievement' | 'streak' | 'badge' | 'bonus' | 'add-to-cart' | 'remove-from-cart' | 'checkout' | 'purchase' | 'coupon' | 'refund';
+/** Component events; each maps to a cue through the `sound-<event>` token. */
+export type SoundEventName = 'toggle-on' | 'toggle-off' | 'check' | 'uncheck' | 'select' | 'deselect' | 'sort' | 'open' | 'close' | 'expand' | 'collapse' | 'notify-success' | 'notify-error' | 'notify-warning' | 'notify-info' | 'snackbar' | 'remove' | 'copy' | 'clear' | 'step' | 'complete' | 'press' | 'typing' | 'tab-change' | 'navigate';
+export interface SoundCueDefinition { name: SoundCueName; label: string; category: string; description: string; loop?: boolean }
+export interface PlayingSound { stop: () => void; ended: Promise<void> }
+export interface SoundPlayOptions { volume?: number; loop?: boolean; playbackRate?: number; retrigger?: 'restart' | 'overlap' | 'ignore'; cooldownMs?: number }
+export interface LeafySound {
+  /** Plays a cue now. Returns null while sound is off, before the first tap or key press, or without Web Audio. Loops run until you call stop(). */
+  play(cue: SoundCueName, options?: SoundPlayOptions): PlayingSound | null;
+  /** Plays the cue a component event maps to (`--sound-<event>` in tokens.css, else the built-in map). */
+  event(event: SoundEventName, options?: SoundPlayOptions): PlayingSound | null;
+  cueFor(event: SoundEventName): SoundCueName | 'none';
+  unlock(): Promise<boolean>;
+  isEnabled(): boolean;
+  setEnabled(enabled: boolean): void;
+  getVolume(): number;
+  setVolume(volume: number): void;
+  getPack(): string;
+  preload(cues?: SoundCueName[], options?: { signal?: AbortSignal }): Promise<void>;
+  stopAll(): void;
+  /** Called after setEnabled or setVolume; returns an unsubscribe function. */
+  subscribe(listener: () => void): () => void;
+  getCue(name: SoundCueName): SoundCueDefinition | null;
+  readonly cues: SoundCueDefinition[];
+  readonly categories: { id: string; label: string; description: string }[];
+  readonly events: Record<SoundEventName, SoundCueName | 'none'>;
+}
+export declare const sound: LeafySound;
+
+export interface SoundSettingsProps { title?: string; description?: React.ReactNode | false; showVolume?: boolean; sampleCue?: SoundCueName; onChange?: (prefs: { enabled: boolean; volume: number }) => void; id?: string; className?: string; style?: React.CSSProperties }
+export declare function SoundSettings(props: SoundSettingsProps): React.ReactElement;
+
+export interface SoundCueProps { cue: SoundCueName; label?: string; description?: string | false; disabled?: boolean; className?: string; style?: React.CSSProperties }
+export declare function SoundCue(props: SoundCueProps): React.ReactElement;
+
+declare global {
+  interface Window {
+    Leafy: {
+      Icon: typeof Icon; Button: typeof Button; IconButton: typeof IconButton; FAB: typeof FAB; SegmentedButton: typeof SegmentedButton; Link: typeof Link;
+      Chip: typeof Chip; Tag: typeof Tag; Badge: typeof Badge; Checkbox: typeof Checkbox; Radio: typeof Radio; Switch: typeof Switch; Slider: typeof Slider;
+      TextField: typeof TextField; Select: typeof Select; SearchBar: typeof SearchBar; Card: typeof Card; Tile: typeof Tile; Divider: typeof Divider;
+      List: typeof List; ListItem: typeof ListItem; Avatar: typeof Avatar; Accordion: typeof Accordion; DataTable: typeof DataTable; Pagination: typeof Pagination;
+      Menu: typeof Menu; MenuItem: typeof MenuItem; Tabs: typeof Tabs; TopAppBar: typeof TopAppBar; Header: typeof Header; SideNav: typeof SideNav; Breadcrumb: typeof Breadcrumb;
+      NavigationBar: typeof NavigationBar; NavigationRail: typeof NavigationRail; ProgressIndicator: typeof ProgressIndicator;
+      Dialog: typeof Dialog; Notification: typeof Notification; Snackbar: typeof Snackbar; Tooltip: typeof Tooltip; Progress: typeof Progress;
+      Skeleton: typeof Skeleton; CodeSnippet: typeof CodeSnippet;
+      SoundSettings: typeof SoundSettings; SoundCue: typeof SoundCue; sound: LeafySound;
+    };
+  }
+}

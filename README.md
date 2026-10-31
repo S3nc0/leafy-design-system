@@ -1,8 +1,14 @@
-# Leafy design system for native apps
+# Leafy design system
 
-Leafy is a design system built on Material 3, IBM Carbon's type, sizing and structure, and calm Zen interface sounds. This repository holds its native export for **Android (Jetpack Compose, Kotlin)** and **iOS (SwiftUI)**.
+Leafy is a design system built on Material 3, IBM Carbon's type, sizing and structure, and calm Zen interface sounds. This repository holds it for three platforms, all built from one export of the design system:
 
-Both packages are generated from the same `tokens.json` as the web system, so these stay identical across platforms:
+| Platform | Folder | What you get |
+| --- | --- | --- |
+| **Web** | [`leafy-web`](leafy-web) | CSS tokens and styles for all 41 components, IBM Plex, and the React components (ES module or `<script>` tag, with TypeScript types) |
+| **Android** | [`leafy-native/android/leafy`](leafy-native/android/leafy) | A Jetpack Compose theme and 9 Leafy components on Material 3 |
+| **iOS** | [`leafy-native/ios/LeafyDesign`](leafy-native/ios/LeafyDesign) | A SwiftUI package with the same theme and 9 components |
+
+Every platform shares these, generated from the same tokens:
 - colour roles
 - type, spacing, sizes and corners
 - the sound map
@@ -15,20 +21,92 @@ Both packages are generated from the same `tokens.json` as the web system, so th
 ## What's in this repository
 
 ```
+design-system/                 the Leafy design system, exported from claude.ai (the source for everything else)
+├── tokens.json                colour, type, spacing, size, shape, elevation, grid and sound tokens
+├── zen-cues.json              the 78 uisfx Zen cues (names, categories, loops)
+├── guidelines.md              how to use colour, type, shape, motion, sound and the components
+└── components/                the React components (bundle.js, bundle.css, index.d.ts) and one doc per component
+tools/
+├── generate.mjs               builds leafy-web and the native token files from design-system/
+└── woff-to-sfnt.cjs           turns IBM's WOFF fonts into the TTFs the native apps bundle
+leafy-web/                     the web package
+├── css/                       leafy.css (everything), or fonts.css, icons.css, tokens.css and components.css
+├── fonts/                     IBM Plex Sans and Mono (WOFF2)
+├── js/                        leafy.js (ES module), leafy.global.js (script tag), leafy.d.ts (types)
+├── examples/                  a React dashboard, an ES module page and an HTML-and-CSS-only page
+└── package.json
 leafy-native/
-├── tokens/
-│   ├── tokens.json            the Leafy tokens, exported from the design system
-│   └── zen-cues.json          the 78 uisfx Zen cues (names, categories, loops)
-├── tools/
-│   ├── generate.mjs           regenerates the Kotlin and Swift token files
-│   └── woff-to-sfnt.cjs       turns IBM's WOFF fonts into the TTFs both apps bundle
 ├── android/leafy/             Android library module (Jetpack Compose + Material 3)
 ├── ios/LeafyDesign/           Swift package (SwiftUI, iOS 16+, macOS 13+)
-├── docs/                      reference renders of the SwiftUI components
-└── LICENSES.md                fonts, sounds and icons
+└── docs/                      reference renders of the SwiftUI components
 ```
 
-Each platform gets:
+## Web
+
+The web package is the design system itself: all 41 components, styled with the same CSS and built from the same React code as the design system on claude.ai.
+
+**1. Add it.** Pick the route that fits your site:
+
+- **With a bundler (Vite, Next.js, webpack).** Copy `leafy-web` into your project and install it from that folder. It isn't published to npm.
+
+  ```bash
+  npm install ./leafy-web
+  ```
+
+  ```js
+  import 'leafy-web/leafy.css';
+  import { Button, Notification, DataTable, sound } from 'leafy-web';
+  ```
+
+  It needs React 18 or later as a peer dependency, and TypeScript picks up the types from `js/leafy.d.ts`.
+
+- **Without a build step.** Link the stylesheet, React and the classic script, which sets `window.Leafy`:
+
+  ```html
+  <link rel="stylesheet" href="leafy-web/css/leafy.css">
+  <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="leafy-web/js/leafy.global.js"></script>
+  ```
+
+- **HTML and CSS only (any framework, or none).** Link `leafy.css` and write the markup with Leafy's `lf-` classes. Form controls are native inputs, so they work without scripts. [`examples/html-only.html`](leafy-web/examples/html-only.html) shows the markup the React components produce, ready to copy.
+
+**2. Pick a theme.** With no `data-theme`, pages follow the system's dark mode and increased-contrast settings. To fix one, set it on `<html>`:
+
+```html
+<html data-theme="dark">  <!-- light, dark, light-hc or dark-hc -->
+```
+
+You can also put `data-theme` on any element, to theme just that part of a page.
+
+**3. Use it.**
+
+```jsx
+<Notification kind="warning" title="Soil is drying">MS-105 reads 21%, below the 25% target.</Notification>
+<Button icon="water_drop" onClick={run}>Run irrigation</Button>
+<Switch label="Frost alerts" checked={frost} onChange={(e) => setFrost(e.target.checked)} />
+```
+
+```css
+.panel { background: var(--layer-01); padding: var(--space-4); border-radius: var(--shape-corner-small); }
+```
+
+Text styles are classes too, such as `class="lf-title-small"` or `lf-body-medium`.
+
+Each component's props, variants and sounds are documented in [`design-system/components`](design-system/components). [`design-system/guidelines.md`](design-system/guidelines.md) covers when to use what: colour roles, type, layers, spacing, motion, sound and accessibility.
+
+**4. Fonts and icons.**
+- **Fonts:** IBM Plex is served from the package (`fonts.css`), and browsers download only the weights a page uses.
+- **Icons:** the icon font, Material Symbols Sharp, loads from Google Fonts (`icons.css`). To self-host it, swap that import for your own `@font-face`.
+
+**5. Sound.** The components play the Zen sounds themselves. The uisfx runtime inside `leafy.js` synthesizes each sound in the browser, so there are no audio files to serve. Play outcomes with `sound.play('success')`. People's on/off and volume choice is saved in `localStorage` under `leafy:sound`, and `<SoundSettings />` gives them the controls.
+
+> [!NOTE]
+> All three examples were checked in a browser: Light, Dark and high contrast, a 375px phone width, and the sound events, with no console errors. The ES module build was also run in Node with React 18.3.1. React 19 hasn't been tested.
+
+## Native apps
+
+Each native platform gets:
 
 - **Theme:** all four themes (Light, Dark, Light high contrast, Dark high contrast). That covers every Material 3 colour role plus Leafy's status, layer, field, border, focus and link roles.
 - **Type:** the 15 Material 3 styles in IBM Plex, plus two code styles. IBM Plex Sans and Mono are bundled.
@@ -36,7 +114,7 @@ Each platform gets:
 - **Sound:** a player for the Zen pack's 78 sounds, with the same component sounds as the web. It saves each person's on/off and volume choice and plays at most 4 sounds at once.
 - **Components:** the pieces Material 3 and SwiftUI don't already provide (see [Components](#components)).
 
-## Android: Jetpack Compose
+### Android: Jetpack Compose
 
 **1. Add the module.** Copy [`leafy-native/android/leafy`](leafy-native/android/leafy) into your project as a module named `leafy`, then:
 
@@ -82,7 +160,7 @@ You can use the families directly as `LeafyPlex.Sans` and `LeafyPlex.Mono`. If a
 > [!NOTE]
 > The Compose module is written for Compose with Material 3 1.3 but **hasn't been compiled yet**. Build it once in Android Studio, then open the previews in `LeafyGallery.kt` to check every component in three themes.
 
-## iOS: SwiftUI
+### iOS: SwiftUI
 
 **1. Add the package.**
 1. Clone this repository.
@@ -133,38 +211,52 @@ Text("Zone B4").leafyFont(.titleSmall).foregroundStyle(colors.onSurfaceVariant)
 
 ## Components
 
-| Leafy | Compose | SwiftUI | Sound it plays |
-| --- | --- | --- | --- |
-| Button (6 variants, 3 sizes, danger) | `LeafyButton` | `LeafyButton`, `.buttonStyle(.leafy(...))` | `press`, silent by default |
-| Tag (8 types, dismissible) | `LeafyTag` | `LeafyTag` | `remove` |
-| Notification (inline, toast, high contrast) | `LeafyNotification` | `LeafyNotification` | Its kind, for toasts; inline only with `sound` |
-| Tile (base, clickable, selectable) | `LeafyTile` | `LeafyTile` | `select` and `deselect` |
-| Text field (Carbon stacked) | `LeafyTextField` | `LeafyTextField` | `typing`, silent by default |
-| Switch | `LeafySwitch` | `.toggleStyle(.leafySwitch)` | `toggle-on` and `toggle-off` |
-| Checkbox | `LeafyCheckbox` | `.toggleStyle(.leafyCheckbox)` | `check` and `uncheck` |
-| Radio | `LeafyRadio` | Use `Picker` (iOS has no radio button) | `select` |
-| Sound settings | `LeafySoundSettings` | `LeafySoundSettings` | Sample and volume tick |
-| All of the above | `LeafyGallery` | `LeafyGalleryView` | |
+The web package has all 41 components (see [`design-system/components`](design-system/components)). The native packages carry the nine that Material 3 and SwiftUI don't already cover:
 
-For everything else, use the platform's own components inside the theme:
+| Leafy | Web (React) | Compose | SwiftUI | Sound it plays |
+| --- | --- | --- | --- | --- |
+| Button (6 variants, 3 sizes, danger) | `Button` | `LeafyButton` | `LeafyButton`, `.buttonStyle(.leafy(...))` | `press`, silent by default |
+| Tag (8 types, dismissible) | `Tag` | `LeafyTag` | `LeafyTag` | `remove` |
+| Notification (inline, toast, high contrast) | `Notification` | `LeafyNotification` | `LeafyNotification` | Its kind, for toasts; inline only with `sound` |
+| Tile (base, clickable, selectable) | `Tile` | `LeafyTile` | `LeafyTile` | `select` and `deselect` |
+| Text field (Carbon stacked) | `TextField variant="stacked"` | `LeafyTextField` | `LeafyTextField` | `typing`, silent by default |
+| Switch | `Switch` | `LeafySwitch` | `.toggleStyle(.leafySwitch)` | `toggle-on` and `toggle-off` |
+| Checkbox | `Checkbox` | `LeafyCheckbox` | `.toggleStyle(.leafyCheckbox)` | `check` and `uncheck` |
+| Radio | `Radio` | `LeafyRadio` | Use `Picker` (iOS has no radio button) | `select` |
+| Sound settings | `SoundSettings` | `LeafySoundSettings` | `LeafySoundSettings` | Sample and volume tick |
+| All of the above | the examples in `leafy-web/examples` | `LeafyGallery` | `LeafyGalleryView` | |
+
+On native, use the platform's own components inside the theme for everything else:
 - **Android:** Material 3's dialogs, menus, navigation bar and rail, tabs, lists, progress indicators and snackbar automatically take Leafy's roles and corners.
 - **iOS:** use `List`, `NavigationSplitView`, `TabView`, `.sheet` and `ProgressView`, with the tint from `.leafyTheme()`.
 
-The web system's data table, side nav and header are web-shaped patterns, so they weren't ported.
+The data table, side nav and header are web-shaped patterns, so they exist only in the web package.
 
 ## Sound
 
-Both platforms play the uisfx **Zen** sounds (CC0) from audio files: `.ogg` in Android's `res/raw`, `.mp3` in the Swift package. The sound rules are the same as on the web:
+Every platform plays the uisfx **Zen** sounds (CC0):
+- **Web:** synthesized in the browser.
+- **Android:** `.ogg` files in `res/raw`.
+- **iOS:** `.mp3` files in the Swift package.
+
+The rules are the same everywhere:
 
 1. **Sound confirms a change**, something the person did or must notice. It never decorates.
 2. **Movement and input are silent:** typing, navigation, tabs, scrolling, sliders and button presses. The outcome of an action makes the sound, not the press.
 3. **One sound per action.** At most 4 play at once, and a repeated cue restarts instead of stacking.
 4. **Sound is never the only signal.** Every sound repeats something visible.
-5. **People are in charge.** Put `LeafySoundSettings` in your settings screen.
+5. **People are in charge.** Put the sound settings component in your settings screen.
+   - **Web:** nothing plays before the person's first tap or key press.
    - **iOS:** sounds respect the silent switch and mix with the person's music. Leafy uses the ambient audio session unless your app has set its own.
    - **Android:** sounds play as sonification audio.
 
 Your app code plays the outcomes:
+
+```js
+sound.play('success');                    // a save worked
+const job = sound.play('processing');     // work the person is waiting on
+job?.stop();                              // stop it when the spinner goes away
+```
 
 ```kotlin
 Leafy.sound.play(LeafyCue.Success)                 // a save worked
@@ -180,19 +272,22 @@ job?.stop()
 
 ## Updating from the design system
 
-The token files are generated, so don't edit them by hand. These are:
+`design-system/` is the single source. Everything built from it is generated, so don't edit these by hand:
+- **Web:** `css/tokens.css`, `css/components.css` and everything in `js/`.
 - **Kotlin:** `LeafyColors.kt`, `LeafyTypography.kt`, `LeafyTokens.kt` and `LeafySoundCues.kt`.
 - **Swift:** the files in `ios/LeafyDesign/Sources/LeafyDesign/Generated/`.
 
-When Leafy's tokens change:
-1. Export `tokens.json` again into `leafy-native/tokens/`.
-2. From the `leafy-native` folder, run:
+When the design system changes on claude.ai:
+1. Export its files again into `design-system/`: `tokens.json`, `README.md` as `guidelines.md`, `components/bundle.js`, `bundle.css` and `index.d.ts`, and each component's `README.md` as `components/<Name>.md`.
+2. From the top of the repository, run:
 
 ```bash
 node tools/generate.mjs
 ```
 
-To refresh the sound files from a newer uisfx release:
+That rebuilds the web package and the native token files together.
+
+To refresh the native sound files from a newer uisfx release:
 
 ```bash
 node tools/generate.mjs --sounds node_modules/uisfx/sounds/zen
@@ -200,7 +295,11 @@ node tools/generate.mjs --sounds node_modules/uisfx/sounds/zen
 
 The generator needs only Node 18+.
 
-The bundled fonts come from IBM's npm packages `@ibm/plex-sans@1.1.0` and `@ibm/plex-mono@2.5.0`, which only include web font formats. `tools/woff-to-sfnt.cjs` unwraps their WOFF files into TTFs. The table data stays byte-identical; only the whole-file checksum is recomputed. To update the fonts:
+The bundled fonts come from IBM's npm packages `@ibm/plex-sans@1.1.0` and `@ibm/plex-mono@2.5.0`:
+- **Web:** uses their WOFF2 files as they are.
+- **Native apps:** need TTFs, so `tools/woff-to-sfnt.cjs` unwraps the WOFF files. The table data stays byte-identical; only the whole-file checksum is recomputed.
+
+To update the native fonts:
 
 ```bash
 node tools/woff-to-sfnt.cjs <out dir> node_modules/@ibm/plex-sans/fonts/complete/woff/IBMPlexSans-*.woff
@@ -211,7 +310,8 @@ node tools/woff-to-sfnt.cjs <out dir> node_modules/@ibm/plex-sans/fonts/complete
 | What | Licence |
 | --- | --- |
 | Zen sounds (uisfx) | CC0 1.0 |
+| uisfx sound runtime, inside the web package's JavaScript | MIT |
 | IBM Plex fonts | SIL Open Font License 1.1 |
-| Android icon shapes (from Material icons) | Apache 2.0 |
+| Material Symbols (web icons, from Google Fonts) and Android icon shapes (from Material icons) | Apache 2.0 |
 
-Leafy builds on Material 3 and borrows patterns from IBM's Carbon Design System. It isn't affiliated with Google or IBM. Details are in [`leafy-native/LICENSES.md`](leafy-native/LICENSES.md).
+Leafy builds on Material 3 and borrows patterns from IBM's Carbon Design System. It isn't affiliated with Google or IBM. Details are in [`leafy-web/LICENSES.md`](leafy-web/LICENSES.md) and [`leafy-native/LICENSES.md`](leafy-native/LICENSES.md).

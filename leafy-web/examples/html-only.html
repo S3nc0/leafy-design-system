@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leafy · HTML and CSS only</title>
+<!-- Leafy's styles are all a static page needs. The markup below is what the React components render. -->
+<link rel="stylesheet" href="../css/leafy.css">
+<style>
+  main { box-sizing: border-box; max-width: 1120px; margin: 0 auto; padding: var(--space-8) var(--space-4); display: flex; flex-direction: column; gap: var(--space-10); }
+  section > p { margin: var(--space-1) 0 var(--space-4); }
+  h1, h2 { margin: 0; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+  .stack { display: flex; flex-direction: column; gap: var(--space-3); }
+  .form { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5) var(--space-6); align-items: start; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--grid-gutter-condensed); }
+  .themes { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4); }
+  .theme { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-4); background: var(--surface); color: var(--on-surface); box-shadow: inset 0 0 0 1px var(--outline-variant); }
+  .theme p { margin: 0; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1 class="lf-headline-medium">Leafy with HTML and CSS only</h1>
+    <p class="lf-body-large lf-muted">Every component here is plain markup with Leafy's classes. Copy what you need.</p>
+  </header>
+
+  <section>
+    <h2 class="lf-title-medium">Buttons</h2>
+    <p class="lf-body-medium lf-muted">Six variants and three sizes. The classes do all the styling; add your own click handlers.</p>
+    <div class="row">
+      <button type="button" class="lf-btn lf-state lf-focus lf-btn--filled lf-btn--md lf-btn--icon-end"><span class="lf-btn__label">Run irrigation</span><span class="lf-icon" aria-hidden="true">arrow_forward</span></button>
+      <button type="button" class="lf-btn lf-state lf-focus lf-btn--inverse lf-btn--md"><span class="lf-btn__label">Save draft</span></button>
+      <button type="button" class="lf-btn lf-state lf-focus lf-btn--tonal lf-btn--md"><span class="lf-btn__label">Calibrate</span></button>
+      <button type="button" class="lf-btn lf-state lf-focus lf-btn--outlined lf-btn--md"><span class="lf-btn__label">Export CSV</span></button>
+      <button type="button" class="lf-btn lf-state lf-focus lf-btn--text lf-btn--md"><span class="lf-btn__label">Cancel</span></button>
+      <button type="button" class="lf-btn lf-state lf-focus lf-btn--filled lf-btn--md lf-btn--icon-end lf-btn--danger"><span class="lf-btn__label">Delete zone</span><span class="lf-icon" aria-hidden="true">delete</span></button>
+      <button type="button" class="lf-btn lf-state lf-focus lf-btn--filled lf-btn--sm lf-btn--icon-start"><span class="lf-icon" aria-hidden="true">add</span><span class="lf-btn__label">Add sensor</span></button>
+      <button type="button" aria-label="More options" class="lf-iconbtn lf-state lf-focus lf-iconbtn--standard"><span class="lf-icon" aria-hidden="true">more_vert</span></button>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="lf-title-medium">Tags and links</h2>
+    <p class="lf-body-medium lf-muted">Status tags always say the status in words.</p>
+    <div class="row">
+      <span class="lf-tag lf-tag--success" title="Healthy"><span class="lf-icon" aria-hidden="true">check_circle</span><span class="lf-tag__label">Healthy</span></span>
+      <span class="lf-tag lf-tag--warning" title="Dry soil"><span class="lf-icon" aria-hidden="true">warning</span><span class="lf-tag__label">Dry soil</span></span>
+      <span class="lf-tag lf-tag--error" title="Sensor offline"><span class="lf-tag__label">Sensor offline</span></span>
+      <span class="lf-tag lf-tag--info" title="Firmware 2.4"><span class="lf-tag__label">Firmware 2.4</span></span>
+      <span class="lf-tag lf-tag--primary" title="Tomatoes"><span class="lf-tag__label">Tomatoes</span></span>
+      <a href="#" class="lf-link lf-focus">All zones<span class="lf-icon" aria-hidden="true">arrow_forward</span></a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="lf-title-medium">Notifications</h2>
+    <p class="lf-body-medium lf-muted">Use role="alert" for warnings and errors, role="status" for the rest.</p>
+    <div class="stack">
+      <div role="alert" class="lf-note lf-note--warning lf-note--inline"><span class="lf-icon lf-icon--filled lf-note__icon" role="img" aria-label="Warning">warning</span><div class="lf-note__text"><p class="lf-note__title">Soil is drying</p><div class="lf-note__subtitle">MS-105 reads 21%, below the 25% target.</div></div></div>
+      <div role="alert" class="lf-note lf-note--error lf-note--inline lf-note--high"><span class="lf-icon lf-icon--filled lf-note__icon" role="img" aria-label="Error">error</span><div class="lf-note__text"><p class="lf-note__title">Sensor offline</p><div class="lf-note__subtitle">MS-212 has not reported for 40 minutes.</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="lf-title-medium">Form controls</h2>
+    <p class="lf-body-medium lf-muted">Native inputs underneath, so keyboard, screen readers and form posts work without scripts.</p>
+    <div class="form">
+      <div class="lf-field lf-field--stacked lf-field--md"><label class="lf-field__top-label" for="lf-f1">Zone name</label><div class="lf-field__box"><input placeholder="e.g. B4 Tomatoes" id="lf-f1" class="lf-field__input" aria-describedby="lf-f1-support"/></div><div class="lf-field__support" id="lf-f1-support">Shown on the floor plan</div></div>
+      <div class="lf-field lf-field--stacked lf-field--md lf-field--error"><label class="lf-field__top-label" for="lf-f2">Target moisture (%)</label><div class="lf-field__box lf-field__box--trail"><input id="lf-f2" class="lf-field__input" aria-invalid="true" aria-describedby="lf-f2-support" value="120"/><span class="lf-icon" aria-hidden="true">error</span></div><div class="lf-field__support" id="lf-f2-support">Enter a value from 0 to 100</div></div>
+      <div class="lf-field lf-field--stacked lf-select lf-field--md"><label class="lf-field__top-label" for="lf-f3">Crop</label><div class="lf-field__box lf-field__box--trail"><select id="lf-f3" class="lf-select__input"><option value="Tomatoes">Tomatoes</option><option value="Peppers">Peppers</option><option value="Cucumbers">Cucumbers</option></select><span class="lf-icon lf-select__chevron" aria-hidden="true">expand_more</span></div></div>
+      <div class="row"><label class="lf-check"><span class="lf-check__control"><input type="checkbox" class="lf-check__input" checked=""/><span class="lf-check__box" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lf-check__tick" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" fill="currentColor"></path><rect class="lf-check__dash" x="5" y="11" width="14" height="2.5" fill="currentColor"></rect></svg></span></span>Zone B4</label><label class="lf-check"><span class="lf-check__control"><input type="checkbox" class="lf-check__input"/><span class="lf-check__box" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="lf-check__tick" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" fill="currentColor"></path><rect class="lf-check__dash" x="5" y="11" width="14" height="2.5" fill="currentColor"></rect></svg></span></span>Zone B5</label></div>
+      <div class="row" role="radiogroup" aria-label="Run mode"><label class="lf-check"><span class="lf-check__control"><input name="mode" type="radio" class="lf-check__input" checked=""/><span class="lf-radio__ring" aria-hidden="true"></span></span>Scheduled</label><label class="lf-check"><span class="lf-check__control"><input name="mode" type="radio" class="lf-check__input"/><span class="lf-radio__ring" aria-hidden="true"></span></span>Sensor-led</label></div>
+      <label class="lf-switch"><span class="lf-switch__track"><input type="checkbox" role="switch" class="lf-switch__input" checked=""/><span class="lf-switch__handle" aria-hidden="true"><span class="lf-icon" aria-hidden="true">check</span></span></span>Frost alerts</label>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="lf-title-medium">Tiles and progress</h2>
+    <p class="lf-body-medium lf-muted">Tiles on a 1px gutter make a data wall.</p>
+    <div class="tiles">
+      <div class="lf-tile lf-tile--base"><div class="lf-title-small">Soil moisture</div><div class="lf-display-small">32%</div><div class="lf-body-small lf-muted">Zone B4 · 5 min ago</div></div>
+      <div class="lf-tile lf-tile--base"><div class="lf-title-small">Uploading readings</div><div style="margin-top:var(--space-4)"><div class="lf-progress-wrap"><div class="lf-progress__top"><span>Readings</span><span class="lf-progress__pct">62%</span></div><div class="lf-progress" role="progressbar" aria-label="Readings" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62"><div class="lf-progress__bar" style="width:62%"></div></div><div class="lf-field__support">1,240 of 2,000 rows</div></div></div></div>
+      <div class="lf-tile lf-tile--base"><div class="lf-title-small">Loading</div><div style="margin-top:var(--space-4)"><span class="lf-skel-group" aria-hidden="true"><span class="lf-skel lf-skel--text"></span><span class="lf-skel lf-skel--text"></span><span class="lf-skel lf-skel--text" style="width:60%"></span></span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="lf-title-medium">Themes</h2>
+    <p class="lf-body-medium lf-muted">Put data-theme on any element to theme just that part of the page. Without it, the page follows the system.</p>
+    <div class="themes">
+      <div class="theme" data-theme="light">
+        <p class="lf-label-medium lf-muted">data-theme="light"</p>
+        <div role="status" class="lf-note lf-note--success lf-note--inline"><span class="lf-icon lf-icon--filled lf-note__icon" role="img" aria-label="Success">check_circle</span><div class="lf-note__text"><p class="lf-note__title">Run complete</p><div class="lf-note__subtitle">Zone B4 watered for 12 minutes.</div></div></div>
+        <div class="row"><button type="button" class="lf-btn lf-state lf-focus lf-btn--filled lf-btn--md lf-btn--icon-end"><span class="lf-btn__label">Run irrigation</span><span class="lf-icon" aria-hidden="true">water_drop</span></button><button type="button" class="lf-btn lf-state lf-focus lf-btn--outlined lf-btn--md"><span class="lf-btn__label">Export CSV</span></button><span class="lf-tag lf-tag--warning" title="Dry soil"><span class="lf-icon" aria-hidden="true">warning</span><span class="lf-tag__label">Dry soil</span></span></div>
+      </div>
+      <div class="theme" data-theme="dark">
+        <p class="lf-label-medium lf-muted">data-theme="dark"</p>
+        <div role="status" class="lf-note lf-note--success lf-note--inline"><span class="lf-icon lf-icon--filled lf-note__icon" role="img" aria-label="Success">check_circle</span><div class="lf-note__text"><p class="lf-note__title">Run complete</p><div class="lf-note__subtitle">Zone B4 watered for 12 minutes.</div></div></div>
+        <div class="row"><button type="button" class="lf-btn lf-state lf-focus lf-btn--filled lf-btn--md lf-btn--icon-end"><span class="lf-btn__label">Run irrigation</span><span class="lf-icon" aria-hidden="true">water_drop</span></button><button type="button" class="lf-btn lf-state lf-focus lf-btn--outlined lf-btn--md"><span class="lf-btn__label">Export CSV</span></button><span class="lf-tag lf-tag--warning" title="Dry soil"><span class="lf-icon" aria-hidden="true">warning</span><span class="lf-tag__label">Dry soil</span></span></div>
+      </div>
+      <div class="theme" data-theme="light-hc">
+        <p class="lf-label-medium lf-muted">data-theme="light-hc"</p>
+        <div role="status" class="lf-note lf-note--success lf-note--inline"><span class="lf-icon lf-icon--filled lf-note__icon" role="img" aria-label="Success">check_circle</span><div class="lf-note__text"><p class="lf-note__title">Run complete</p><div class="lf-note__subtitle">Zone B4 watered for 12 minutes.</div></div></div>
+        <div class="row"><button type="button" class="lf-btn lf-state lf-focus lf-btn--filled lf-btn--md lf-btn--icon-end"><span class="lf-btn__label">Run irrigation</span><span class="lf-icon" aria-hidden="true">water_drop</span></button><button type="button" class="lf-btn lf-state lf-focus lf-btn--outlined lf-btn--md"><span class="lf-btn__label">Export CSV</span></button><span class="lf-tag lf-tag--warning" title="Dry soil"><span class="lf-icon" aria-hidden="true">warning</span><span class="lf-tag__label">Dry soil</span></span></div>
+      </div>
+      <div class="theme" data-theme="dark-hc">
+        <p class="lf-label-medium lf-muted">data-theme="dark-hc"</p>
+        <div role="status" class="lf-note lf-note--success lf-note--inline"><span class="lf-icon lf-icon--filled lf-note__icon" role="img" aria-label="Success">check_circle</span><div class="lf-note__text"><p class="lf-note__title">Run complete</p><div class="lf-note__subtitle">Zone B4 watered for 12 minutes.</div></div></div>
+        <div class="row"><button type="button" class="lf-btn lf-state lf-focus lf-btn--filled lf-btn--md lf-btn--icon-end"><span class="lf-btn__label">Run irrigation</span><span class="lf-icon" aria-hidden="true">water_drop</span></button><button type="button" class="lf-btn lf-state lf-focus lf-btn--outlined lf-btn--md"><span class="lf-btn__label">Export CSV</span></button><span class="lf-tag lf-tag--warning" title="Dry soil"><span class="lf-icon" aria-hidden="true">warning</span><span class="lf-tag__label">Dry soil</span></span></div>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

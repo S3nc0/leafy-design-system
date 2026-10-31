@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leafy · Greenhouse example</title>
+<!-- Leafy's styles: fonts, icons, tokens and components in one file. -->
+<link rel="stylesheet" href="../css/leafy.css">
+<style>
+  .content { box-sizing: border-box; max-width: 1120px; margin: 0 auto; padding: var(--space-6) var(--space-4) var(--space-12); display: flex; flex-direction: column; gap: var(--space-6); }
+  .toolbar { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-4); }
+  .toolbar h1 { margin: var(--space-2) 0 0; }
+  .theme { max-width: 100%; overflow-x: auto; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--grid-gutter-condensed); }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .toast-slot { position: fixed; top: calc(var(--size-lg) + var(--space-4)); right: var(--space-4); left: var(--space-4); display: flex; justify-content: flex-end; z-index: 10; pointer-events: none; }
+  .toast-slot > * { pointer-events: auto; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- React 18, then Leafy's components as a classic script (sets window.Leafy). -->
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="../js/leafy.global.js"></script>
+<script>
+  const { Header, Breadcrumb, SegmentedButton, Notification, Tile, DataTable, Tag, Button, SoundSettings } = window.Leafy;
+  const h = React.createElement;
+
+  const THEMES = [
+    { value: 'system', label: 'System' },
+    { value: 'light', label: 'Light' },
+    { value: 'dark', label: 'Dark' },
+    { value: 'light-hc', label: 'Light HC' },
+    { value: 'dark-hc', label: 'Dark HC' },
+  ];
+  // Without data-theme the page follows the system's dark mode and contrast settings.
+  function applyTheme(theme) {
+    if (theme === 'system') delete document.documentElement.dataset.theme;
+    else document.documentElement.dataset.theme = theme;
+  }
+
+  const STATUS = {
+    success: { label: 'Healthy', icon: 'check_circle' },
+    warning: { label: 'Dry soil', icon: 'warning' },
+    error: { label: 'Offline', icon: 'error' },
+  };
+  const SENSORS = [
+    { id: 'MS-105', zone: 'B4 · Tomatoes', moisture: 21, temperature: 24.1, status: 'warning' },
+    { id: 'MS-104', zone: 'B4 · Tomatoes', moisture: 34, temperature: 23.8, status: 'success' },
+    { id: 'MS-211', zone: 'B5 · Peppers', moisture: 38, temperature: 22.9, status: 'success' },
+    { id: 'MS-212', zone: 'B5 · Peppers', moisture: null, temperature: null, status: 'error' },
+  ];
+  const COLUMNS = [
+    { key: 'id', header: 'Sensor' },
+    { key: 'zone', header: 'Zone' },
+    { key: 'moisture', header: 'Moisture (%)', align: 'end', render: (r) => (r.moisture == null ? '–' : r.moisture) },
+    { key: 'temperature', header: 'Temperature (°C)', align: 'end', render: (r) => (r.temperature == null ? '–' : r.temperature.toFixed(1)) },
+    { key: 'status', header: 'Status', sortable: false, render: (r) => h(Tag, { type: r.status, icon: STATUS[r.status].icon, size: 'sm' }, STATUS[r.status].label) },
+  ];
+
+  function Stat(props) {
+    return h(Tile, null,
+      h('div', { className: 'lf-title-small' }, props.title),
+      h('div', { className: 'lf-display-small', style: { marginTop: 'var(--space-2)' } }, props.value),
+      h('div', { className: 'lf-body-small lf-muted' }, props.note));
+  }
+
+  function App() {
+    const [theme, setTheme] = React.useState('system');
+    const [toast, setToast] = React.useState(false);
+    // Toasts for good news hide themselves after a few seconds.
+    React.useEffect(() => {
+      if (!toast) return undefined;
+      const timer = setTimeout(() => setToast(false), 6000);
+      return () => clearTimeout(timer);
+    }, [toast]);
+    const run = () => setToast(true);
+
+    return h(React.Fragment, null,
+      h(Header, {
+        inverse: true, prefix: 'Leafy', name: 'Greenhouse',
+        navItems: [{ label: 'Overview', current: true }, { label: 'Zones' }, { label: 'Irrigation' }, { label: 'Reports' }],
+        actions: [{ icon: 'notifications', label: 'Alerts', badge: 2 }, { icon: 'account_circle', label: 'Account' }],
+      }),
+      h('main', { className: 'content' },
+        h('div', { className: 'toolbar' },
+          h('div', null,
+            h(Breadcrumb, { items: [{ label: 'Greenhouse' }, { label: 'North house' }] }),
+            h('h1', { className: 'lf-headline-medium' }, 'North house')),
+          h('div', { className: 'theme' },
+            h(SegmentedButton, { 'aria-label': 'Theme', value: theme, options: THEMES, onChange: (v) => { setTheme(v); applyTheme(v); } }))),
+        h(Notification, { kind: 'warning', title: 'Soil is drying', action: { label: 'Run now', onClick: run } }, 'MS-105 reads 21%, below the 25% target.'),
+        h('div', { className: 'tiles' },
+          h(Stat, { title: 'Soil moisture', value: '32%', note: 'Average of 12 probes' }),
+          h(Stat, { title: 'Air temperature', value: '23.6 °C', note: 'Target 22–26 °C' }),
+          h(Stat, { title: 'Runs today', value: '4', note: 'Next at 14:00' })),
+        h(DataTable, {
+          title: 'Sensors', description: 'Live readings, refreshed every 5 minutes.',
+          columns: COLUMNS, rows: SENSORS, sortable: true, selectable: true, defaultSort: { key: 'moisture', dir: 'asc' },
+          batchActions: h(Button, { variant: 'filled', icon: 'water_drop', onClick: run }, 'Run irrigation'),
+        }),
+        h('div', { className: 'actions' },
+          h(Button, { icon: 'water_drop', onClick: run }, 'Run irrigation'),
+          h(Button, { variant: 'outlined' }, 'Export CSV')),
+        h(SoundSettings, { sampleCue: 'complete' })),
+      toast ? h('div', { className: 'toast-slot' },
+        h(Notification, { kind: 'success', variant: 'toast', title: 'Run complete', caption: 'Just now', onClose: () => setToast(false) }, 'Zone B4 watered for 12 minutes.')) : null);
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+</script>
+</body>
+</html>
