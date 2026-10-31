@@ -1,6 +1,6 @@
 # Leafy design system for native apps
 
-Leafy is a design system built on Material 3, with the green Verdant M3 colour scheme, IBM Carbon's type, sizing and structure, and calm Zen interface sounds. This repository holds its native export for **Android (Jetpack Compose, Kotlin)** and **iOS (SwiftUI)**.
+Leafy is a design system built on Material 3, IBM Carbon's type, sizing and structure, and calm Zen interface sounds. This repository holds its native export for **Android (Jetpack Compose, Kotlin)** and **iOS (SwiftUI)**.
 
 Both packages are generated from the same `tokens.json` as the web system, so these stay identical across platforms:
 - colour roles
